@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "bot.activity",
+      "type": "java.lang.String",
+      "description": "Description for bot.activity."
+    },
+    {
+      "name": "bot.prefix",
+      "type": "java.lang.String",
+      "description": "Description for bot.prefix."
+    }
+  ] }
