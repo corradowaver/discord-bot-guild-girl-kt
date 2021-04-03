@@ -17,10 +17,10 @@ class BitcoinCommand : Command {
         val rates = Currencies.values().map {
             it to responseJson.getJSONObject(it.name).get("last").toString()
         }
-        event!!.channel.sendMessage(getMessage(rates)).queue()
+        event!!.channel.sendMessage(buildBitcoinMessage(rates)).queue()
     }
 
-    private fun getMessage(rates: List<Pair<Currencies, String>>): MessageEmbed {
+    private fun buildBitcoinMessage(rates: List<Pair<Currencies, String>>): MessageEmbed {
         val description: String = rates.joinToString(separator = "\n") {
             it.first.sign + " : " + it.second
         }

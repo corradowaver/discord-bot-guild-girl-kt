@@ -1,5 +1,6 @@
-package com.corradwoaver.demo.bot.commads
+package com.corradwoaver.demo.bot.commads.business
 
+import com.corradwoaver.demo.bot.commads.Command
 import com.corradwoaver.demo.bot.message.MyMessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
@@ -14,10 +15,10 @@ class Business : Command {
 
     override fun invoke(args: List<String>) {
         val name = event!!.author.asTag
-        event!!.channel.sendMessage(getMessage(name)).queue()
+        event!!.channel.sendMessage(buildBusinessMessage(name)).queue()
     }
 
-    private fun getMessage(name: String): MessageEmbed {
+    private fun buildBusinessMessage(name: String): MessageEmbed {
         return MyMessageBuilder()
             .setTitle("$name, че за бизнес сука?")
             .setDescription("https://dl-iamt.spbstu.ru/course/index.php?categoryid=5")

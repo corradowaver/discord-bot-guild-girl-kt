@@ -16,10 +16,10 @@ class PingCommand : Command {
         val messageTime = event!!.message.timeCreated.toInstant().toEpochMilli()
         val now = System.currentTimeMillis()
         val latency = now - messageTime
-        event!!.channel.sendMessage(getMessage(latency)).queue()
+        event!!.channel.sendMessage(buildPingMessage(latency)).queue()
     }
 
-    private fun getMessage(latency: Long): MessageEmbed {
+    private fun buildPingMessage(latency: Long): MessageEmbed {
         val color = when (latency) {
             in 0..35 -> GREEN
             in 36..60 -> YELLOW
@@ -33,5 +33,4 @@ class PingCommand : Command {
             .setFooter("made by corradowaver")
             .build()
     }
-
 }
