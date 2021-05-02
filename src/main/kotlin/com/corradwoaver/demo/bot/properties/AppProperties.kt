@@ -7,6 +7,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConfigurationProperties(prefix = "bot")
 data class AppProperties(
   var token: String,
-  var activity: String,
-  var prefix: String
+  var activity: String = "Tik-Tok",
+  var prefix: String = "!"
 )
