@@ -1,36 +1,18 @@
 package com.corradwoaver.demo.bot.commads.ping
 
 import com.corradwoaver.demo.bot.commads.Command
-import com.corradwoaver.demo.bot.message.MyMessageBuilder
-import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
-import java.awt.Color.*
 
 @Component
-class PingCommand : Command {
-    override val caller: String = "ping"
-    override var event: GuildMessageReceivedEvent? = null
+class PingCommand(val messageBuilder: PingMessage) : Command {
+  override val caller: String = "ping"
+  override lateinit var event: GuildMessageReceivedEvent
 
-    override fun invoke(args: List<String>) {
-        val messageTime = event!!.message.timeCreated.toInstant().toEpochMilli()
-        val now = System.currentTimeMillis()
-        val latency = now - messageTime
-        event!!.channel.sendMessage(buildPingMessage(latency)).queue()
-    }
-
-    private fun buildPingMessage(latency: Long): MessageEmbed {
-        val color = when (latency) {
-            in 0..35 -> GREEN
-            in 36..60 -> YELLOW
-            in 61..90 -> ORANGE
-            else -> RED
-        }
-        return MyMessageBuilder()
-            .setTitle("$latency ms")
-            .setDescription("Pong-pong")
-            .setColor(color)
-            .setFooter("made by corradowaver")
-            .build()
-    }
+  override fun invoke(args: List<String>) {
+    val messageTime = event.message.timeCreated.toInstant().toEpochMilli()
+    val now = System.currentTimeMillis()
+    val latency = now - messageTime
+    messageBuilder.latency(latency).send(event)
+  }
 }

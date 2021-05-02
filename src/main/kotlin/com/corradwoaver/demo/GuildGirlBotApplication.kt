@@ -10,6 +10,6 @@ import org.springframework.boot.runApplication
 class GuildGirlBotApplication
 
 fun main(args: Array<String>) {
-    runApplication<GuildGirlBotApplication>(*args)
-    //khttp.get("http://localhost:8080/start")
+  runApplication<GuildGirlBotApplication>(*args)
+  //khttp.get("http://localhost:8080/start")
 }
