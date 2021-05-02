@@ -11,5 +11,4 @@ class GuildGirlBotApplication
 
 fun main(args: Array<String>) {
   runApplication<GuildGirlBotApplication>(*args)
-  //khttp.get("http://localhost:8080/start")
 }
