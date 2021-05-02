@@ -29,7 +29,7 @@ jobs:
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         BOT_PREFIX: ${{ secrets.BOT_PREFIX }}
-        BOT_ACTIVIRY: ${{ secrets.BOT_ACTIVITY }}
+        BOT_ACTIVITY: ${{ secrets.BOT_ACTIVITY }}
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
