@@ -47,7 +47,7 @@ For example let's implement ping command.
         }
       }
       ```
-   - Create `class PingMessage`
+   - Create `object PingMessage`
       ```java
       @Component
       final object PingMessage : MessageBuilder() {
