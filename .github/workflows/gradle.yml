@@ -23,9 +23,7 @@ jobs:
         distribution: 'adopt'
     - name: Set properties
       run: 
-        echo bot.token=${BOT_TOKEN} > ./src/main/resources/application.properties &&
-        echo bot.prefix=${BOT_PREFIX} > ./src/main/resources/application.properties &&
-        echo bot.activity=${BOT_ACTIVITY} > ./src/main/resources/application.properties
+        printf bot.token=${BOT_TOKEN}\nbot.prefix=${BOT_PREFIX}\nbot.activity=${BOT_ACTIVITY} > ./src/main/resources/application.properties
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         BOT_PREFIX: ${{ secrets.BOT_PREFIX }}
