@@ -33,11 +33,16 @@ For example let's implement ping command.
       class PingCommand(val messageBuilder: PingMessage) : Command {
         override val caller: String = "ping" //NOTE! val caller is representing how will you call command (e.g. !ping)
         override lateinit var event: GuildMessageReceivedEvent
-
+        
+        /*
+          args - are everything you pass after your command
+          e.g. !ping kek lol
+          where 
+            args[0] == kek
+            args[1] == lol
+        */
         override fun invoke(args: List<String>) {
-          /*
-            Calculating latency.
-          */
+          // Calculating latency.
           messageBuilder.latency(latency).send(event)
         }
       }
