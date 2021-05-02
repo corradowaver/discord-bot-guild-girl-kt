@@ -23,11 +23,9 @@ jobs:
         distribution: 'adopt'
     - name: Set properties
       run: 
-        printf bot.token=${BOT_TOKEN}\nbot.prefix=${BOT_PREFIX}\nbot.activity=${BOT_ACTIVITY} > ./src/main/resources/application.properties
+        echo bot.token=${BOT_TOKEN} > ./src/main/resources/application.properties
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        BOT_PREFIX: ${{ secrets.BOT_PREFIX }}
-        BOT_ACTIVITY: ${{ secrets.BOT_ACTIVITY }}
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
