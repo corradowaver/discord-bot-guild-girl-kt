@@ -17,12 +17,21 @@ jobs:
       with:
         java-version: '15'
         distribution: 'adopt'
+    - name: Set properties
+      run: echo bot.token=${{ secrets.BOT_TOKEN }} > ./src/main/resources/application.properties
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag dark-guild-girl-bot:latest
-    - name: Push the Docker image
-      run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD} && docker image push iamnzrv/dark-guild-girl-bot:latest
+      
+  push:
+      
+      needs: build
+      runs-on: ubuntu-latest
+      
+      steps:
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag dark-guild-girl-bot:latest
+      - name: Push the Docker image
+        run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }} && docker image push iamnzrv/dark-guild-girl-bot:latest
     
