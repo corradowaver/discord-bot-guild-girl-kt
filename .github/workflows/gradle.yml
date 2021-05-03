@@ -22,7 +22,7 @@ jobs:
         java-version: '15'
         distribution: 'adopt'
     - name: Set properties
-      run: echo 'bot.token=${BOT_TOKEN}' < ./src/main/resources/application.properties
+      run: echo 'bot.token=${BOT_TOKEN}' >> ./src/main/resources/application.properties
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
