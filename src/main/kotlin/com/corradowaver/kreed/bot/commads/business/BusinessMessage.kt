@@ -1,6 +1,6 @@
-package com.corradwoaver.demo.bot.commads.business
+package com.corradowaver.kreed.bot.commads.business
 
-import com.corradwoaver.demo.bot.MessageBuilder
+import com.corradowaver.kreed.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
@@ -10,7 +10,7 @@ import java.awt.Color
 final object BusinessMessage : MessageBuilder() {
 
   private var businessman = ""
-  fun businessman(name: String) = apply { this.businessman = name }
+  fun businessman(name: String) = apply { businessman = name }
 
   override fun send(event: GuildMessageReceivedEvent) {
     event.channel.sendMessage(createMessage()).queue()

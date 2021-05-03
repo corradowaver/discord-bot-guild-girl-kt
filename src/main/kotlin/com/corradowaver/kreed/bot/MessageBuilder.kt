@@ -1,4 +1,4 @@
-package com.corradwoaver.demo.bot
+package com.corradowaver.kreed.bot
 
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed

@@ -1,4 +1,4 @@
-package com.corradwoaver.demo.bot.commads
+package com.corradowaver.kreed.bot.commads
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 

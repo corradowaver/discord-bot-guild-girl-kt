@@ -1,6 +1,6 @@
-package com.corradwoaver.demo.bot.executors
+package com.corradowaver.kreed.bot.executors
 
-import com.corradwoaver.demo.bot.commads.Command
+import com.corradowaver.kreed.bot.commads.Command
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 
 object CommandExecutor {

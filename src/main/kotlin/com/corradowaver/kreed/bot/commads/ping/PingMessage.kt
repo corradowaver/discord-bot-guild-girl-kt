@@ -1,6 +1,6 @@
-package com.corradwoaver.demo.bot.commads.ping
+package com.corradowaver.kreed.bot.commads.ping
 
-import com.corradwoaver.demo.bot.MessageBuilder
+import com.corradowaver.kreed.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
@@ -10,7 +10,7 @@ import java.awt.Color
 final object PingMessage : MessageBuilder() {
 
   private var latency = 0L
-  fun latency(latency: Long) = apply { this.latency = latency }
+  fun latency(latency: Long) = apply { PingMessage.latency = latency }
 
   override fun send(event: GuildMessageReceivedEvent) {
     event.channel.sendMessage(createMessage()).queue()

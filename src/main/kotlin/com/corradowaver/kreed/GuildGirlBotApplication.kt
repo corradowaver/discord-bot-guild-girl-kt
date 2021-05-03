@@ -1,6 +1,6 @@
-package com.corradwoaver.demo
+package com.corradowaver.kreed
 
-import com.corradwoaver.demo.bot.properties.AppProperties
+import com.corradowaver.kreed.bot.properties.AppProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

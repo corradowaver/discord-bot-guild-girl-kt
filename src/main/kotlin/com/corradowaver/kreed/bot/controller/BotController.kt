@@ -1,4 +1,4 @@
-package com.corradwoaver.demo.bot.controller
+package com.corradowaver.kreed.bot.controller
 
 import org.springframework.core.env.Environment
 import org.springframework.web.bind.annotation.GetMapping

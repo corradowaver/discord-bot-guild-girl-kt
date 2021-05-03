@@ -1,7 +1,7 @@
-package com.corradwoaver.demo.bot
+package com.corradowaver.kreed.bot
 
-import com.corradwoaver.demo.bot.listeners.MessageListener
-import com.corradwoaver.demo.bot.properties.AppProperties
+import com.corradowaver.kreed.bot.listeners.MessageListener
+import com.corradowaver.kreed.bot.properties.AppProperties
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import org.springframework.beans.factory.annotation.Autowired

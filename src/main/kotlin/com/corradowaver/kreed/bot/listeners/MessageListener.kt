@@ -1,8 +1,8 @@
-package com.corradwoaver.demo.bot.listeners
+package com.corradowaver.kreed.bot.listeners
 
-import com.corradwoaver.demo.bot.commads.Command
-import com.corradwoaver.demo.bot.executors.CommandExecutor.execute
-import com.corradwoaver.demo.bot.properties.AppProperties
+import com.corradowaver.kreed.bot.commads.Command
+import com.corradowaver.kreed.bot.executors.CommandExecutor.execute
+import com.corradowaver.kreed.bot.properties.AppProperties
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.stereotype.Component
