@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag dark-guild-girl-bot:latest
+
+  push:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Push the Docker image
+      run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD} && docker image push iamnzrv/dark-guild-girl-bot:latest
+    
