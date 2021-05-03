@@ -9,5 +9,10 @@
       "name": "bot.prefix",
       "type": "java.lang.String",
       "description": "Description for bot.prefix."
+    },
+    {
+      "name": "bot.token",
+      "type": "java.lang.String",
+      "description": "Description for bot.token."
     }
   ] }
