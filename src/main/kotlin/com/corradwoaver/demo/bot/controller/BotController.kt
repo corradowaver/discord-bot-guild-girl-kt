@@ -1,15 +1,15 @@
 package com.corradwoaver.demo.bot.controller
 
-import com.corradwoaver.demo.bot.Runner
-import com.corradwoaver.demo.bot.commads.Command
+import org.springframework.core.env.Environment
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
-class BotController(private val runner: Runner, private val commands: Map<String, Command>) {
 
-    @GetMapping("/start")
-    fun start(): Int {
-        return 1
-    }
+@RestController
+class BotController(val environment: Environment) {
+
+  @GetMapping("/ping")
+  fun start(): String {
+    return "Server is running on ${environment.getProperty("local.server.address")}:${environment.getProperty("local.server.port")}"
+  }
 }
