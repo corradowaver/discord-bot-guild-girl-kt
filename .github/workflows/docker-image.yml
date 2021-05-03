@@ -23,16 +23,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-      
-  push:
-      
-      needs: build
-      runs-on: ubuntu-latest
-      
-      steps:
-      - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag dark-guild-girl-bot:latest
-      - name: Push the Docker image
-        run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }} && docker image push iamnzrv/dark-guild-girl-bot:latest
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag dark-guild-girl-bot:latest
+    - name: Push the Docker image
+      run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }} && docker image push iamnzrv/dark-guild-girl-bot:latest
     
