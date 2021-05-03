@@ -22,11 +22,7 @@ jobs:
         java-version: '15'
         distribution: 'adopt'
     - name: Set properties
-      uses: christian-draeger/write-properties@1.0.1
-      with:
-        path: './src/main/resources/application.properties'
-        property: 'bot.token'
-        value: ${BOT_TOKEN}
+      run: echo 'bot.token=${BOT_TOKEN}' < ./src/main/resources/application.properties
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
