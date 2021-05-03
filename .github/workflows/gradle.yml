@@ -26,7 +26,7 @@ jobs:
       with:
         path: './src/main/resources/application.properties'
         property: 'bot.token'
-        value: '${BOT_TOKEN}'
+        value: ${BOT_TOKEN}
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
