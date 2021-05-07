@@ -4,7 +4,10 @@ import com.corradowaver.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
-import java.awt.Color
+import java.awt.Color.GREEN
+import java.awt.Color.ORANGE
+import java.awt.Color.RED
+import java.awt.Color.YELLOW
 
 @Component
 final object PingMessage : MessageBuilder() {
@@ -18,10 +21,10 @@ final object PingMessage : MessageBuilder() {
 
   override fun createMessage(): MessageEmbed {
     val color = when (latency) {
-      in 0..35 -> Color.GREEN
-      in 36..60 -> Color.YELLOW
-      in 61..90 -> Color.ORANGE
-      else -> Color.RED
+      in 0..90 -> GREEN
+      in 91..120 -> YELLOW
+      in 121..180 -> ORANGE
+      else -> RED
     }
     return super
       .setTitle("$latency ms")
