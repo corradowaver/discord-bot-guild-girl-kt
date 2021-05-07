@@ -1,6 +1,6 @@
-package com.corradowaver.kreed.bot.commads.bitcoin
+package com.corradowaver.bot.commads.bitcoin
 
-import com.corradowaver.kreed.bot.commads.Command
+import com.corradowaver.bot.commads.Command
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
 

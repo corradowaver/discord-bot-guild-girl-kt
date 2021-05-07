@@ -1,7 +1,7 @@
-package com.corradowaver.kreed.bot
+package com.corradowaver.bot
 
-import com.corradowaver.kreed.bot.listeners.MessageListener
-import com.corradowaver.kreed.bot.properties.AppProperties
+import com.corradowaver.bot.listeners.MessageListener
+import com.corradowaver.bot.properties.AppProperties
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +14,7 @@ class Runner(
 ) {
   init {
     JDABuilder.createDefault(properties.token)
-      .setActivity(Activity.watching(properties.activity))
+      .setActivity(Activity.playing(properties.activity))
       .addEventListeners(messageListener)
       .build()
   }

@@ -1,4 +1,4 @@
-package com.corradowaver.kreed
+package com.corradowaver
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
