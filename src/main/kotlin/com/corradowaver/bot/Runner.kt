@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller
 @Controller
 class Runner(
   @Autowired val properties: AppProperties,
-  @Autowired val messageListener: MessageListener
+  @Autowired val messageListener: MessageListener,
 ) {
   init {
     JDABuilder.createDefault(properties.token)
