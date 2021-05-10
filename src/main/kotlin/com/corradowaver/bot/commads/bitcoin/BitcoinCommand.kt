@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class BitcoinCommand(val messageBuilder: BitcoinMessage) : Command {
   override val caller: String = "btc"
+  override val description = "Shows current bitcoin rate"
   override lateinit var event: GuildMessageReceivedEvent
 
   override fun invoke(args: List<String>) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class PingCommand(val messageBuilder: PingMessage) : Command {
   override val caller: String = "ping"
+  override val description = "Ping-pong"
   override lateinit var event: GuildMessageReceivedEvent
 
   override fun invoke(args: List<String>) {
