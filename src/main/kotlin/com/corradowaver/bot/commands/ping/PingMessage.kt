@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.ping
+package com.corradowaver.bot.commands.ping
 
 import com.corradowaver.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed

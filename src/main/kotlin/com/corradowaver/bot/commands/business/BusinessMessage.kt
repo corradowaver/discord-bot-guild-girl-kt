@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.business
+package com.corradowaver.bot.commands.business
 
 import com.corradowaver.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed

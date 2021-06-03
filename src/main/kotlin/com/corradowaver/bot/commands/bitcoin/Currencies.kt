@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.bitcoin
+package com.corradowaver.bot.commands.bitcoin
 
 enum class Currencies(
   val sign: String = ""

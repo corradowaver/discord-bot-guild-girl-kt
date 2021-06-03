@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.dimesh
+package com.corradowaver.bot.commands.dimesh
 
 data class IndianPersonalityDTO(
   val name: String,

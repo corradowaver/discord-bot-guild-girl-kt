@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.bitcoin
+package com.corradowaver.bot.commands.bitcoin
 
 import com.corradowaver.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed

@@ -1,6 +1,6 @@
-package com.corradowaver.bot.commads.ping
+package com.corradowaver.bot.commands.ping
 
-import com.corradowaver.bot.commads.Command
+import com.corradowaver.bot.commands.Command
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
 

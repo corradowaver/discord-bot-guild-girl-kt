@@ -1,6 +1,6 @@
-package com.corradowaver.bot.commads.dimesh
+package com.corradowaver.bot.commands.dimesh
 
-import com.corradowaver.bot.commads.Command
+import com.corradowaver.bot.commands.Command
 import khttp.get
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component

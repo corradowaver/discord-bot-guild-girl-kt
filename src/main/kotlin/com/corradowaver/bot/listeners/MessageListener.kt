@@ -1,6 +1,6 @@
 package com.corradowaver.bot.listeners
 
-import com.corradowaver.bot.commads.Command
+import com.corradowaver.bot.commands.Command
 import com.corradowaver.bot.executors.CommandExecutor.execute
 import com.corradowaver.bot.properties.AppProperties
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent

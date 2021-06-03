@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commads.dimesh
+package com.corradowaver.bot.commands.dimesh
 
 import com.corradowaver.bot.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
