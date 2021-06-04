@@ -32,6 +32,7 @@ For example let's implement ping command.
       @Component
       class PingCommand(val messageBuilder: PingMessage) : Command {
         override val caller: String = "ping" //NOTE! val caller is representing how will you call command (e.g. !ping)
+        override val description: String = "Ping command description"
         override lateinit var event: GuildMessageReceivedEvent
         
         /*
