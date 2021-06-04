@@ -29,10 +29,10 @@ dependencies {
   implementation("khttp:khttp:1.0.0")
 
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-  implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+  implementation("com.fasterxml.jackson.core:jackson-databind")
 
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
-  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.3")
+  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
 }
 
 tasks.withType<KotlinCompile> {

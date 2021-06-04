@@ -8,14 +8,17 @@ import org.springframework.stereotype.Component
 @Component
 final object Rule34Message : MessageBuilder() {
 
+  private lateinit var post: Post
+  fun post(post: Post) = apply { this.post = post }
+
   override fun send(event: GuildMessageReceivedEvent) {
     event.channel.sendMessage(createMessage()).queue()
   }
 
   override fun createMessage(): MessageEmbed {
     return super
-      .setTitle("")
-      .setDescription("")
+      .setTitle("Here's a random pic")
+      .setImage(post.imageUrl)
       .build()
   }
 }
