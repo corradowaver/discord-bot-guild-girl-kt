@@ -15,19 +15,35 @@ class Rule34Command(val messageBuilder: Rule34Message) : Command {
   override lateinit var event: GuildMessageReceivedEvent
 
   override fun invoke(args: List<String>) {
-    messageBuilder.post(makePost()).send(event)
+    val post = if (args.isEmpty()) {
+      makeRandomPost()
+    } else {
+      makeRandomPostByTags(args)
+    }
+    messageBuilder.post(post).send(event)
   }
 
-  private fun makePost(): Post {
-    val response = randomPostResponse()
-    val postJson = extractPost(response) ?: run { return makePost() }
-    val imageUrl = extractImageUrl(postJson) ?: run { return makePost() }
+  private fun makeRandomPost(): Post {
+    val response = randomPostResponseById()
+    val postJson = extractPost(response) ?: run { return makeRandomPost() }
+    val imageUrl = extractImageUrl(postJson) ?: run { return makeRandomPost() }
     return Post(imageUrl)
   }
 
-  private fun randomPostResponse(): Response {
+  private fun makeRandomPostByTags(tags: List<String>): Post {
+    val response = randomPostResponseByTags(tags)
+    val postJson = extractPost(response) ?: run { return makeRandomPost() }
+    val imageUrl = extractImageUrl(postJson) ?: run { return makeRandomPost() }
+    return Post(imageUrl)
+  }
+
+  private fun randomPostResponseById(): Response {
     val id = Random.nextInt(1, 2000000)
     return khttp.get("https://rule34.xxx/index.php?page=dapi&s=post&q=index&id=$id")
+  }
+
+  private fun randomPostResponseByTags(tags: List<String>): Response {
+    return khttp.get("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags.joinToString(separator = "%20")}") //TODO parse good. now parse bad. only first occurrence
   }
 
   private fun extractImageUrl(post: JsonNode): String? {

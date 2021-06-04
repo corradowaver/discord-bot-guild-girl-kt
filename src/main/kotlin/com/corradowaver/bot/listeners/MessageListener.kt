@@ -16,7 +16,7 @@ class MessageListener(
   private val commands: Map<String, Command> = rawCommands.associateBy { it.caller }
 
   override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
-    val args = event.message.contentRaw.split("\\s+")
+    val args = event.message.contentRaw.split(" ")
     val message = args[0].toLowerCase()
     val prefix = properties.prefix
     val preparedArgs = args.drop(1)
