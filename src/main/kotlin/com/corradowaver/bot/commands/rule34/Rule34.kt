@@ -27,14 +27,14 @@ class Rule34Command(val messageBuilder: Rule34Message) : Command {
     val response = randomPostResponseById()
     val postJson = extractPost(response) ?: run { return makeRandomPost() }
     val imageUrl = extractImageUrl(postJson) ?: run { return makeRandomPost() }
-    return Post(imageUrl)
+    return Post(url = imageUrl)
   }
 
   private fun makeRandomPostByTags(tags: List<String>): Post {
     val response = randomPostResponseByTags(tags)
     val postJson = extractPost(response) ?: run { return makeRandomPost() }
     val imageUrl = extractImageUrl(postJson) ?: run { return makeRandomPost() }
-    return Post(imageUrl)
+    return Post("Rule34 for ${tags.joinToString(",", "[", "]")}", imageUrl)
   }
 
   private fun randomPostResponseById(): Response {

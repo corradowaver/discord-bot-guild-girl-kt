@@ -17,9 +17,9 @@ final object Rule34Message : MessageBuilder() {
 
   override fun createMessage(): MessageEmbed {
     return super
-      .setTitle("Rule 34:")
+      .setTitle(post.name)
       .setDescription("")
-      .setImage(post.imageUrl)
+      .setImage(post.url)
       .build()
   }
 }
