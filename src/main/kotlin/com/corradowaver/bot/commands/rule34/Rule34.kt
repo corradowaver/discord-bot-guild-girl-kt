@@ -43,7 +43,7 @@ class Rule34Command(val messageBuilder: Rule34Message) : Command {
   }
 
   private fun randomPostResponseByTags(tags: List<String>): Response {
-    return khttp.get("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags.joinToString(separator = "%20")}") //TODO parse good. now parse bad. only first occurrence
+    return khttp.get("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags.joinToString(separator = "%20")}")
   }
 
   private fun extractImageUrl(post: JsonNode): String? {
