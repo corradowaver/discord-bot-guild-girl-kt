@@ -15,11 +15,13 @@ import kotlin.io.path.deleteExisting
 import kotlin.io.path.deleteIfExists
 
 
-object TextToSpeechRequester {
+class TextToSpeechRequester(
+  private val yandexAuth: YandexAuth
+) {
 
-  private const val yandexTtsSynthesizeUrl = "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize"
-  private const val sampleRate = 48000
-  private const val sampleSize = 16
+  private val yandexTtsSynthesizeUrl = "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize"
+  private val sampleRate = 48000
+  private val sampleSize = 16
 
   fun requestTts(text: String): Path {
     val content = requestRawFile(text).content
@@ -43,18 +45,19 @@ object TextToSpeechRequester {
   }
 
   private fun requestRawFile(text: String, language: Languages = RU): Response {
+
     val values = mapOf(
       "text" to text,
       "lang" to language.id,
       "voice" to "jane",
       "emotion" to "evil",
-      "folderId" to "b1ggg3qlbr8vae9vhc0s",
+      "folderId" to yandexAuth.folder,
       "format" to "lpcm",
-      "sampleRateHertz" to "$sampleRate"
+      "sampleRateHertz" to sampleRate.toString()
     )
 
     return khttp.post(
-      headers = mapOf("Authorization" to "Bearer ${YandexAuth.iamToken}"),
+      headers = mapOf("Authorization" to "Bearer ${yandexAuth.iamToken}"),
       data = values,
       url = yandexTtsSynthesizeUrl
     )

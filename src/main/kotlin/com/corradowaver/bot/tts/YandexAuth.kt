@@ -4,13 +4,14 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
 @Component
-final object YandexAuth {
+class YandexAuth(yandexCloudProperties: YandexCloudProperties) {
 
-  const val yandexIamTokenUrl = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
+  val yandexIamTokenUrl = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 
+  var folder = yandexCloudProperties.folder
   var iamToken: String = ""
 
-  private const val yandexPassportOAuthToken = "AQAAAAAzyoYUAATuwdxaa-G0R01CoWSGG6fH-tY"
+  private var yandexPassportOAuthToken = yandexCloudProperties.token
 
 
   @Scheduled(fixedRate = 60 * 60 * 1000, initialDelay = 1000)
