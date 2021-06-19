@@ -14,8 +14,8 @@ Second generation of a "Discord Guild Girl Bot" built using Spring & JDA
    -  `bot.activity=`  any watching activity (e.g. `Netflix`)  
    
    ##### _In case  you want to use [Yandex Speech Kit](https://cloud.yandex.com/en-ru/services/speechkit) add followings:_  
-   -  `yandex.cloud.token=`  your yandex passport oauth token
-   -  `yandex.cloud.folder=`  your yandex cloud folder
+   -  `yandex.cloud.token=`  your token from Yandex.OAuth
+   -  `yandex.cloud.folder=`  your Yandex cloud folder id
    
 -  ### Launch the app!
    - Run `./gradle bootRun`
