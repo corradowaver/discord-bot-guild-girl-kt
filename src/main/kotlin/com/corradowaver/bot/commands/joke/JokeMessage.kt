@@ -13,12 +13,23 @@ final object JokeMessage : MessageBuilder() {
     event.channel.sendMessage(createMessage()).queue()
   }
 
+  fun sendTimeHasNotCome(event: GuildMessageReceivedEvent) {
+    event.channel.sendMessage(createTimeHasNotComeMessage()).queue()
+  }
+
   override fun createMessage(): MessageEmbed {
     return super
-      .setTitle("Joke:")
-      .setDescription("WIP")
+      .setTitle("Ваш заказ принят!")
+      .setDescription("Придумываю шутеечку.")
       .setColor(Color.GREEN)
-      .setFooter("made by corradowaver")
+      .build()
+  }
+
+  private fun createTimeHasNotComeMessage(): MessageEmbed {
+    return super
+      .setTitle("Падажжи")
+      .setDescription("5 секунд можно подождать, не?")
+      .setColor(Color.RED)
       .build()
   }
 }

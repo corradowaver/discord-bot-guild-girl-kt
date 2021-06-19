@@ -9,6 +9,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.UUID
+import java.util.UUID.randomUUID
 import javax.sound.sampled.AudioFileFormat.Type.WAVE
 import javax.sound.sampled.AudioFormat
 import javax.sound.sampled.AudioInputStream
@@ -25,7 +26,7 @@ class TextToSpeechYandexImpl(
 
   override fun requestTts(text: String): Path {
     val content = requestRawFile(text).content
-    val fileName = UUID.randomUUID().toString()
+    val fileName = randomUUID().toString()
     return saveAsWavFile(fileName, content)
   }
 
@@ -45,8 +46,8 @@ class TextToSpeechYandexImpl(
     val values = mapOf(
       "text" to text,
       "lang" to language.id,
-      "speed" to "0.9",
-      "voice" to "jane",
+      "speed" to "1",
+      "voice" to "oksana",
       "emotion" to "good",
       "folderId" to yandexAuth.folder,
       "format" to "lpcm",
