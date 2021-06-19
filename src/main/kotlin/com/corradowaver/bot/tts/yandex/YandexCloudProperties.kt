@@ -6,6 +6,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConstructorBinding
 @ConfigurationProperties(prefix = "yandex.cloud")
 data class YandexCloudProperties(
-  var token: String,
-  var folder: String,
+  var token: String = "",
+  var folder: String = "",
 )
