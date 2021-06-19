@@ -1,6 +1,6 @@
 package com.corradowaver.bot.commands.help
 
-import com.corradowaver.bot.MessageBuilder
+import com.corradowaver.bot.commands.MessageBuilder
 import com.corradowaver.bot.commands.Command
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent

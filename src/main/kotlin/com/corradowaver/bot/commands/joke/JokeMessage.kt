@@ -1,15 +1,13 @@
-package com.corradowaver.bot.commands.rule34
+package com.corradowaver.bot.commands.joke
 
 import com.corradowaver.bot.commands.MessageBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
+import java.awt.Color
 
 @Component
-final object Rule34Message : MessageBuilder() {
-
-  private lateinit var post: Post
-  fun post(post: Post) = apply { this.post = post }
+final object JokeMessage : MessageBuilder() {
 
   override fun send(event: GuildMessageReceivedEvent) {
     event.channel.sendMessage(createMessage()).queue()
@@ -17,9 +15,10 @@ final object Rule34Message : MessageBuilder() {
 
   override fun createMessage(): MessageEmbed {
     return super
-      .setTitle(post.name)
-      .setDescription("")
-      .setImage(post.url)
+      .setTitle("Joke:")
+      .setDescription("WIP")
+      .setColor(Color.GREEN)
+      .setFooter("made by corradowaver")
       .build()
   }
 }
