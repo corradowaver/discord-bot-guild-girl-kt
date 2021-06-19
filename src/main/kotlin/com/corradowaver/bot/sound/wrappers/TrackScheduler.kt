@@ -4,6 +4,8 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason
+import java.nio.file.Files
+import java.nio.file.Path
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
 
@@ -23,9 +25,8 @@ class TrackScheduler(private val player: AudioPlayer) : AudioEventAdapter() {
   }
 
   override fun onTrackEnd(player: AudioPlayer, track: AudioTrack, endReason: AudioTrackEndReason) {
-    if (endReason.mayStartNext) {
-      nextTrack()
-    }
+    //removing file from temp dir
+    Files.delete(Path.of(track.identifier))
   }
 
 }

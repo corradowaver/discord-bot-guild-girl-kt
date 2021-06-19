@@ -15,7 +15,7 @@ class JokeCommand(
 ) : Command {
 
   override val caller: String = "joke"
-  override val description = "Joker 1.0"
+  override val description = "Currently supporting only poems 18+"
   override lateinit var event: GuildMessageReceivedEvent
 
   override fun invoke(args: List<String>) {
@@ -26,8 +26,6 @@ class JokeCommand(
       event.guild,
       file.toString()
     )
-    //TODO cleanup only after track has played
-    //ttsRequester.cleanup(file.toFile())
   }
 
   private fun receiveJoke(): String {
@@ -39,7 +37,7 @@ class JokeCommand(
   //TODO different joke types
 
   private fun Response.responseToText(): String {
-    return this.text.substring("\"{\"content:".length)
+    return this.text.substring("\"{\"content:".length).replace("\r\n", " ")
   }
 
 }

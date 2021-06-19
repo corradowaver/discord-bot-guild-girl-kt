@@ -6,6 +6,7 @@ import khttp.responses.Response
 import org.springframework.stereotype.Component
 import java.io.ByteArrayInputStream
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.Path
 import java.util.UUID
 import javax.sound.sampled.AudioFileFormat.Type.WAVE
@@ -28,19 +29,15 @@ class TextToSpeechYandexImpl(
     return saveAsWavFile(fileName, content)
   }
 
-  fun cleanup(file: File) {
-    file.delete()
-  }
-
   private fun saveAsWavFile(fileName: String, content: ByteArray): Path {
     val format = AudioFormat(sampleRate.toFloat(), sampleSize, 1, true, false)
     val ais = AudioInputStream(
       ByteArrayInputStream(content), format,
       (content.size / format.frameSize).toLong()
     )
-    val file = File(fileName)
-    AudioSystem.write(ais, WAVE, file)
-    return file.toPath()
+    val file = Files.createTempFile(fileName, "")
+    AudioSystem.write(ais, WAVE, file.toFile())
+    return file
   }
 
   private fun requestRawFile(text: String, language: Languages = RU): Response {
@@ -48,8 +45,9 @@ class TextToSpeechYandexImpl(
     val values = mapOf(
       "text" to text,
       "lang" to language.id,
+      "speed" to "0.9",
       "voice" to "jane",
-      "emotion" to "evil",
+      "emotion" to "good",
       "folderId" to yandexAuth.folder,
       "format" to "lpcm",
       "sampleRateHertz" to sampleRate.toString()
