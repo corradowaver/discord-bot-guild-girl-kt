@@ -1,1 +1,1 @@
-rootProject.name = "kreed"
+rootProject.name = "bot"

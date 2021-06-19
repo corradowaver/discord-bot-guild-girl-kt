@@ -14,5 +14,15 @@
       "name": "bot.token",
       "type": "java.lang.String",
       "description": "Description for bot.token."
+    },
+    {
+      "name": "yandex.cloud.token",
+      "type": "java.lang.String",
+      "description": "Description for yandex.cloud.token."
+    },
+    {
+      "name": "yandex.cloud.folder",
+      "type": "java.lang.String",
+      "description": "Description for yandex.cloud.folder."
     }
   ] }

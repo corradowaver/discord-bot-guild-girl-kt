@@ -34,6 +34,10 @@ dependencies {
 
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
+
+  // https://mvnrepository.com/artifact/com.sedmelluq/lavaplayer
+  implementation("com.sedmelluq:lavaplayer:1.3.7")
+
 }
 
 tasks.withType<KotlinCompile> {
