@@ -12,6 +12,8 @@ Second generation of a "Discord Guild Girl Bot" built using Spring & JDA
    -  `bot.token=`  your bot token ([discord apps](https://discord.com/developers/applications))  
    -  `bot.prefix=`  any prefix (e.g. `!`)  
    -  `bot.activity=`  any watching activity (e.g. `Netflix`)  
+   
+   ##### _In case  you want to use [Yandex Speech Kit](https://cloud.yandex.com/en-ru/services/speechkit) add followings:_  
    -  `yandex.cloud.token=`  your yandex passport oauth token
    -  `yandex.cloud.folder=`  your yandex cloud folder
    
