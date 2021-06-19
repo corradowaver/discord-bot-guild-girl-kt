@@ -3,27 +3,29 @@ package com.corradowaver.bot.commands.joke
 import com.corradowaver.bot.commands.Command
 import com.corradowaver.bot.sound.wrappers.MusicHandler
 import com.corradowaver.bot.tts.TextToSpeechRequester
-import com.corradowaver.bot.tts.TextToSpeechRequester.cleanup
-import com.corradowaver.bot.tts.TextToSpeechRequester.requestTts
 import khttp.responses.Response
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
 
 
 @Component
-class JokeCommand(val messageBuilder: JokeMessage) : Command {
+class JokeCommand(
+  val messageBuilder: JokeMessage,
+  val ttsRequester: TextToSpeechRequester
+) : Command {
+
   override val caller: String = "joke"
   override val description = "Joker 1.0"
   override lateinit var event: GuildMessageReceivedEvent
 
   override fun invoke(args: List<String>) {
     val jokeText = receiveJoke()
-    val file = requestTts(jokeText)
+    val file = ttsRequester.requestTts(jokeText)
     MusicHandler().loadAndPlay(
       event.guild,
       file.toString()
     )
-    cleanup(file.toFile())
+    ttsRequester.cleanup(file.toFile())
   }
 
   private fun receiveJoke(): String {

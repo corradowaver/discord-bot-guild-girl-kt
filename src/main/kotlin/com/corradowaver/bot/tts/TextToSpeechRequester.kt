@@ -2,6 +2,7 @@ package com.corradowaver.bot.tts
 
 import com.corradowaver.bot.tts.Languages.RU
 import khttp.responses.Response
+import org.springframework.stereotype.Component
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.nio.file.Path
@@ -14,7 +15,7 @@ import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.deleteExisting
 import kotlin.io.path.deleteIfExists
 
-
+@Component
 class TextToSpeechRequester(
   private val yandexAuth: YandexAuth
 ) {
