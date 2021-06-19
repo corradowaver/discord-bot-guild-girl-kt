@@ -34,7 +34,7 @@ class MyAudioLoadResultHandler(val guild: Guild, val musicManager: GuildMusicMan
   }
 
   private fun connectToFirstVoiceChannel(audioManager: AudioManager) {
-    if (!audioManager.isConnected && !audioManager.isAttemptingToConnect) {
+    if (!audioManager.isConnected) {
       for (voiceChannel in audioManager.guild.voiceChannels) {
         audioManager.openAudioConnection(voiceChannel)
         break
