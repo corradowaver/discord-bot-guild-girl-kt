@@ -1,7 +1,7 @@
 package com.corradowaver
 
 import com.corradowaver.bot.properties.AppProperties
-import com.corradowaver.bot.tts.YandexCloudProperties
+import com.corradowaver.bot.tts.yandex.YandexCloudProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

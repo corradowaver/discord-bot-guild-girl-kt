@@ -1,4 +1,4 @@
-package com.corradowaver.bot.tts
+package com.corradowaver.bot.tts.yandex
 
 enum class Languages(val id: String) {
   RU("ru-RU"),

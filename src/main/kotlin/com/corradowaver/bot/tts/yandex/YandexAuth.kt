@@ -1,4 +1,4 @@
-package com.corradowaver.bot.tts
+package com.corradowaver.bot.tts.yandex
 
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
@@ -14,7 +14,7 @@ class YandexAuth(yandexCloudProperties: YandexCloudProperties) {
   private var yandexPassportOAuthToken = yandexCloudProperties.token
 
 
-  @Scheduled(fixedRate = 60 * 60 * 1000, initialDelay = 1000)
+  @Scheduled(fixedRate = 6 * 60 * 60 * 1000, initialDelay = 1000)
   fun scheduleMe() {
     iamToken = requestIamToken()
     println(iamToken)

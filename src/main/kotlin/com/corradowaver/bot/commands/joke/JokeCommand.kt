@@ -2,7 +2,7 @@ package com.corradowaver.bot.commands.joke
 
 import com.corradowaver.bot.commands.Command
 import com.corradowaver.bot.sound.wrappers.MusicHandler
-import com.corradowaver.bot.tts.TextToSpeechRequester
+import com.corradowaver.bot.tts.TextToSpeechConvertor
 import khttp.responses.Response
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 @Component
 class JokeCommand(
   val messageBuilder: JokeMessage,
-  val ttsRequester: TextToSpeechRequester
+  val ttsConvertor: TextToSpeechConvertor
 ) : Command {
 
   override val caller: String = "joke"
@@ -20,12 +20,14 @@ class JokeCommand(
 
   override fun invoke(args: List<String>) {
     val jokeText = receiveJoke()
-    val file = ttsRequester.requestTts(jokeText)
+    val file = ttsConvertor.requestTts(jokeText)
+
     MusicHandler().loadAndPlay(
       event.guild,
       file.toString()
     )
-    ttsRequester.cleanup(file.toFile())
+    //TODO cleanup only after track has played
+    //ttsRequester.cleanup(file.toFile())
   }
 
   private fun receiveJoke(): String {
