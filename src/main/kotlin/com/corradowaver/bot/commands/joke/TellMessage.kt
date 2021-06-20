@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 import java.awt.Color
 
 @Component
-final object JokeMessage : MessageBuilder() {
+final object TellMessage : MessageBuilder() {
 
   override fun send(event: GuildMessageReceivedEvent) {
     event.channel.sendMessage(createMessage()).queue()
