@@ -43,7 +43,7 @@ class JokeCommand(
   //TODO 19.06.21: specify type of a joke. connect to active voice channel, not first
 
   private fun Response.responseToText(): String {
-    return this.text.substring("\"{\"content:".length + 1, this.text.length - 1).replace("\r\n", " ").replace("-", ":")
+    return this.text.substring("\"{\"content:".length + 1, this.text.length - 1).replace("\r\n", " ")
   }
 
 }
