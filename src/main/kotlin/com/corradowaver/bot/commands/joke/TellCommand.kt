@@ -5,9 +5,12 @@ import com.corradowaver.bot.commands.joke.JokeType.CLASSIC
 import com.corradowaver.bot.commands.joke.TellTimerHandler.lastJokeSentTimestamp
 import com.corradowaver.bot.sound.wrappers.MusicHandler
 import com.corradowaver.bot.tts.TextToSpeechConvertor
+import com.corradowaver.bot.tts.Voiceover.voice
 import khttp.responses.Response
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
+import org.w3c.dom.Text
 
 
 @Component
@@ -25,25 +28,24 @@ class TellCommand(
       lastJokeSentTimestamp.set(System.currentTimeMillis())
       messageBuilder.send(event)
 
-      val jokeText = receiveJoke(args)
-      voice(jokeText)
+      //TODO send emoji choice
+      val type = defineJokeType()
+
+      val jokeText = receiveJoke(type)
+      voice(event.guild, ttsConvertor, jokeText)
 
     } else {
       messageBuilder.sendTimeHasNotCome(event)
     }
   }
 
-  private fun voice(text: String) {
-    val file = ttsConvertor.requestTts(text)
-    MusicHandler().loadAndPlay(
-      event.guild,
-      file.toString()
-    )
+  private fun defineJokeType(): JokeType {
+    return CLASSIC
   }
 
-  private fun receiveJoke(args: List<String>): String {
-    val joke = requestJoke(CLASSIC).responseToText()
-    return if (joke.length < 500) joke else receiveJoke(args)
+  private fun receiveJoke(type: JokeType): String {
+    val joke = requestJoke(type).responseToText()
+    return if (joke.length < 500) joke else receiveJoke(type)
   }
 
   private fun requestJoke(type: JokeType) = khttp.get("http://rzhunemogu.ru/RandJSON.aspx?CType=${type.id}")
