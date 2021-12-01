@@ -43,10 +43,11 @@ final object VoteMessage : MessageBuilder() {
       .build()
   }
 
+  //TODO: ref: move this logic to somewhere
   fun createVoteResultsMessage(resultsMap: Map<Reactions, Float>): MessageEmbed {
     return super
-      .setTitle(text)
-      .setDescription(resultsMap.entries.joinToString())
+      .setTitle("$text | **${resultsMap.maxByOrNull { it.value }?.key?.value ?: "???"}**")
+      .setDescription("${YES.value}: ${resultsMap[YES]}%\n${NO.value}: ${resultsMap[NO]}%")
       .setColor(GREEN)
       .build()
   }
@@ -54,12 +55,12 @@ final object VoteMessage : MessageBuilder() {
   fun countResults(reactions: List<MessageReaction>): Map<Reactions, Float> =
     reactions
       .filter { it.reactionEmote.name == YES.value || it.reactionEmote.name == NO.value }
-      .associate { it.reactionEmote.name to it.count }
+      .associate { it.reactionEmote.name to it.count - 1 }
       .let {
-        val total = it[YES.value]!! + it[NO.value]!! - 2F //Removing bots reaction
+        val total = (it[YES.value]!! + it[NO.value]!!).toFloat() //Removing bots reaction
         mapOf(
-          YES to (it[YES.value]!! / total),
-          NO to (it[NO.value]!! / total)
+          YES to it[YES.value]!! / total  * 100,
+          NO to it[NO.value]!! / total * 100
         )
       }
 }
