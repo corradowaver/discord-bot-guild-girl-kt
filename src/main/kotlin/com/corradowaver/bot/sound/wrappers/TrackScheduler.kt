@@ -26,7 +26,9 @@ class TrackScheduler(private val player: AudioPlayer) : AudioEventAdapter() {
 
   override fun onTrackEnd(player: AudioPlayer, track: AudioTrack, endReason: AudioTrackEndReason) {
     //removing file from temp dir
-    Files.delete(Path.of(track.identifier))
+    if (track.identifier.substringAfterLast("/") != "voting-sound.wav") {
+      Files.delete(Path.of(track.identifier))
+    }
   }
 
 }

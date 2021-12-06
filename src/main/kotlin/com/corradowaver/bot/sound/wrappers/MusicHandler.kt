@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.entities.Guild
 
 class MusicHandler {
 
-  private val musicManagers: Map<Long, GuildMusicManager>
+  private val musicManagers: MutableMap<Long, GuildMusicManager>
   private val playerManager: AudioPlayerManager
 
   init {
@@ -21,6 +21,11 @@ class MusicHandler {
 
   fun loadAndPlay(guild: Guild, trackUrl: String) {
     val musicManager: GuildMusicManager = getGuildMusicManager(guild)
+    playerManager.loadItem(trackUrl, MyAudioLoadResultHandler(guild, musicManager))
+  }
+
+  fun loadAndPlayOrdered(guild: Guild, trackUrl: String) {
+    val musicManager: GuildMusicManager = getGuildMusicManager(guild)
     playerManager.loadItemOrdered(musicManager, trackUrl, MyAudioLoadResultHandler(guild, musicManager))
   }
 
@@ -29,7 +34,7 @@ class MusicHandler {
     var musicManager = musicManagers[guildId]
     if (musicManager == null) {
       musicManager = GuildMusicManager(playerManager)
-      musicManagers.plus(guildId to musicManager)
+      musicManagers[guildId] = musicManager
     }
     guild.audioManager.sendingHandler = musicManager.sendHandler
     return musicManager
