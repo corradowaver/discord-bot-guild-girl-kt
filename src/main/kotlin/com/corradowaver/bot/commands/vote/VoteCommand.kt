@@ -17,7 +17,7 @@ class VoteCommand(val messageBuilder: VoteMessage) : Command {
   override fun invoke(args: List<String>) {
     MusicHandler().loadAndPlay(
       event.guild,
-      "C:\\Users\\corra\\Documents\\GitHub\\discord-bot-guild-girl-kt\\src\\main\\resources\\voting-sound.wav"
+      javaClass.classLoader.getResource("voting-sound.wav")!!.path
     )
     messageBuilder.text(args.joinToString(" ")).send(event)
   }
@@ -29,8 +29,15 @@ fun countResults(reactions: List<MessageReaction>): Map<Reactions, Float> =
     .associate { it.reactionEmote.name to it.count - 1 }
     .let {
       val total = (it[YES.value]!! + it[NO.value]!!).toFloat()
-      mapOf(
-        YES to it[YES.value]!! / total * 100,
-        NO to it[NO.value]!! / total * 100
-      )
+      if (total != 0F) {
+        mapOf(
+          YES to it[YES.value]!! / total * 100,
+          NO to it[NO.value]!! / total * 100
+        )
+      } else {
+        mapOf(
+          YES to 50.0F,
+          NO to 50.0F
+        )
+      }
     }

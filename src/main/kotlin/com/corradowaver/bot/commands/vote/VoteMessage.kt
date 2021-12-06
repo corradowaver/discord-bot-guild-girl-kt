@@ -25,7 +25,7 @@ final object VoteMessage : MessageBuilder() {
         launch {
           it.addReaction(YES.value).queue()
           it.addReaction(NO.value).queue()
-          delay(5_000L)
+          delay(15_000L)
           event.channel.retrieveMessageById(it.id).queue { message ->
             message.editMessage(createVoteResultsMessage(countResults(message.reactions))).queue()
           }
