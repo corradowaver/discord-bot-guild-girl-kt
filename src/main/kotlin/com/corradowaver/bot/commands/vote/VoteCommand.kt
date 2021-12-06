@@ -28,7 +28,7 @@ fun countResults(reactions: List<MessageReaction>): Map<Reactions, Float> =
     .filter { it.reactionEmote.name == YES.value || it.reactionEmote.name == NO.value }
     .associate { it.reactionEmote.name to it.count - 1 }
     .let {
-      val total = (it[YES.value]!! + it[NO.value]!!).toFloat() //Removing bots reaction
+      val total = (it[YES.value]!! + it[NO.value]!!).toFloat()
       mapOf(
         YES to it[YES.value]!! / total * 100,
         NO to it[NO.value]!! / total * 100
