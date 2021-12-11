@@ -20,7 +20,7 @@ jobs:
         java-version: '15'
         distribution: 'adopt'
     - name: Set properties
-      run: echo bot.token=${{ secrets.BOT_TOKEN }} >> ./src/main/resources/application.properties && echo yandex.cloud.token=${{ secrets.YANDEX_TOKEN }} >> ./src/main/resources/application.properties && echo yandex.cloud.folder=${{ secrets.YANDEX_FOLDER }} >> ./src/main/resources/application.properties
+      run: echo bot.token=${{ secrets.BOT_TOKEN }} >> ./src/main/resources/application.properties && echo yandex.cloud.token=${{ secrets.YANDEX_TOKEN }} >> ./src/main/resources/application.properties && echo yandex.cloud.folder=${{ secrets.YANDEX_FOLDER }} >> ./src/main/resources/application.properties && echo aws.access_key_id=${{ secrets.AWS_ACCESS_KEY }} >> ./src/main/resources/application.properties && echo aws.secret_key_id=${{ secrets.AWS_SECRET_KEY }} >> ./src/main/resources/application.properties
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
