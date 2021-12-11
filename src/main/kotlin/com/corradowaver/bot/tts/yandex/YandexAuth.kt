@@ -17,7 +17,6 @@ class YandexAuth(yandexCloudProperties: YandexCloudProperties) {
   @Scheduled(fixedRate = 6 * 60 * 60 * 1000, initialDelay = 1000)
   fun scheduleMe() {
     iamToken = requestIamToken()
-    println(iamToken)
   }
 
   private fun requestIamToken(): String =
