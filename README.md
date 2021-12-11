@@ -3,21 +3,25 @@ Second generation of a "Discord Guild Girl Bot" built using Spring & JDA
 
 ## Steps To Launch The Bot :
 
--  ### Clone project
+- ### Clone project
 
--  ### Set up
+- ### Set up
    - Run `./gradle build`
 
--  ### Configure `main/resources/application.properties`
-   -  `bot.token=`  your bot token ([discord apps](https://discord.com/developers/applications))  
+- ### Configure `main/resources/application.properties`
+   -  `bot.token=` your bot token ([discord apps](https://discord.com/developers/applications))  
    -  `bot.prefix=`  any prefix (e.g. `!`)  
    -  `bot.activity=`  any watching activity (e.g. `Netflix`)  
    
    ##### _In case  you want to use [Yandex Speech Kit](https://cloud.yandex.com/en-ru/services/speechkit) add followings:_  
-   -  `yandex.cloud.token=`  your token from Yandex.OAuth
-   -  `yandex.cloud.folder=`  your Yandex cloud folder id
+   - `yandex.cloud.token=`  your token from Yandex.OAuth
+   - `yandex.cloud.folder=`  your Yandex cloud folder id
+
+  ##### _In case  you want to use [AWS S3](https://aws.amazon.com/s3/) add followings:_
+    -  `aws.access_key_id=`  your IAM User's access key id
+    -  `aws.secret_key_id=`  your IAM User's secret key id
    
--  ### Launch the app!
+- ### Launch the app!
    - Run `./gradle bootRun`
    
    
