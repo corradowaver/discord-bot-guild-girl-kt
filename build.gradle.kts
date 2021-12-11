@@ -38,6 +38,8 @@ dependencies {
   // https://mvnrepository.com/artifact/com.sedmelluq/lavaplayer
   implementation("com.sedmelluq:lavaplayer:1.3.7")
 
+  implementation("com.amazonaws:aws-java-sdk-bom:1.12.122")
+  implementation("com.amazonaws:aws-java-sdk-s3:1.12.122")
 }
 
 tasks.withType<KotlinCompile> {

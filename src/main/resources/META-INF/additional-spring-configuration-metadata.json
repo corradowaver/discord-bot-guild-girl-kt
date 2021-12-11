@@ -24,5 +24,15 @@
       "name": "yandex.cloud.folder",
       "type": "java.lang.String",
       "description": "Description for yandex.cloud.folder."
+    },
+    {
+      "name": "aws.access.key.id",
+      "type": "java.lang.String",
+      "description": "Description for aws.access.key.id."
+    },
+    {
+      "name": "aws.secret.key.id",
+      "type": "java.lang.String",
+      "description": "Description for aws.secret.key.id."
     }
   ] }
