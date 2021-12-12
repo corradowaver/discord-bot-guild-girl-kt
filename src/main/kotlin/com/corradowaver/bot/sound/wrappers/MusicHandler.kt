@@ -5,6 +5,7 @@ import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers.registerLocalSource
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers.registerRemoteSources
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.VoiceChannel
 
 
 class MusicHandler {
@@ -19,9 +20,9 @@ class MusicHandler {
     registerLocalSource(playerManager)
   }
 
-  fun loadAndPlay(guild: Guild, trackUrl: String) {
+  fun loadAndPlay(guild: Guild, trackUrl: String, voiceChannel: VoiceChannel? = null) {
     val musicManager: GuildMusicManager = getGuildMusicManager(guild)
-    playerManager.loadItem(trackUrl, MyAudioLoadResultHandler(guild, musicManager))
+    playerManager.loadItem(trackUrl, MyAudioLoadResultHandler(guild, musicManager, voiceChannel))
   }
 
   fun loadAndPlayOrdered(guild: Guild, trackUrl: String) {

@@ -14,7 +14,8 @@ class S3Manager(
   awsProperties: AwsProperties
 ) {
 
-  private val bucketName = "guild-girl-shared-files"
+  private val sharedFilesBucketName = "guild-girl-shared-files"
+  private val greetingsSoundsBucketName = "guild-girl-voice-channel-greetings"
   private val s3Client: AmazonS3
 
   init {
@@ -24,12 +25,19 @@ class S3Manager(
       .withCredentials(AWSStaticCredentialsProvider(awsCreds))
       .build()
 
-    if (!s3Client.doesBucketExistV2(bucketName)) {
-      s3Client.createBucket(bucketName)
+    if (!s3Client.doesBucketExistV2(sharedFilesBucketName)) {
+      s3Client.createBucket(sharedFilesBucketName)
+    }
+    if (!s3Client.doesBucketExistV2(greetingsSoundsBucketName)) {
+      s3Client.createBucket(greetingsSoundsBucketName)
     }
   }
 
   fun uploadToS3(name: String, file: File) =
-    s3Client.putObject(bucketName, name, file)
+    s3Client.putObject(sharedFilesBucketName, name, file)
 
+  fun getRandomGreeting() =
+    s3Client.listObjects(greetingsSoundsBucketName).objectSummaries.random().key.let { fileName ->
+      s3Client.getObject(greetingsSoundsBucketName, fileName)
+    }
 }

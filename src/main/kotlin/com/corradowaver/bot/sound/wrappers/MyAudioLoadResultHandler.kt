@@ -5,10 +5,15 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.VoiceChannel
 import net.dv8tion.jda.api.managers.AudioManager
 
 
-class MyAudioLoadResultHandler(val guild: Guild, val musicManager: GuildMusicManager) : AudioLoadResultHandler {
+class MyAudioLoadResultHandler(
+  val guild: Guild,
+  val musicManager: GuildMusicManager,
+  val voiceChannel: VoiceChannel? = null
+) : AudioLoadResultHandler {
 
   override fun trackLoaded(track: AudioTrack) {
     play(guild, musicManager, track)
@@ -29,8 +34,16 @@ class MyAudioLoadResultHandler(val guild: Guild, val musicManager: GuildMusicMan
   }
 
   private fun play(guild: Guild, musicManager: GuildMusicManager, track: AudioTrack) {
-    connectToFirstVoiceChannel(guild.audioManager)
+    if (voiceChannel != null) {
+      connectToVoiceChannel(guild.audioManager, voiceChannel)
+    } else {
+      connectToFirstVoiceChannel(guild.audioManager)
+    }
     musicManager.scheduler.queue(track)
+  }
+
+  private fun connectToVoiceChannel(audioManager: AudioManager, voiceChannel: VoiceChannel) {
+    audioManager.openAudioConnection(voiceChannel)
   }
 
   private fun connectToFirstVoiceChannel(audioManager: AudioManager) {
