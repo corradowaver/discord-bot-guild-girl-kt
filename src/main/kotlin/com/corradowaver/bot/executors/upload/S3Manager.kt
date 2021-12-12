@@ -28,6 +28,9 @@ class S3Manager(
     if (!s3Client.doesBucketExistV2(sharedFilesBucketName)) {
       s3Client.createBucket(sharedFilesBucketName)
     }
+    if (!s3Client.doesBucketExistV2(greetingsSoundsBucketName)) {
+      s3Client.createBucket(greetingsSoundsBucketName)
+    }
   }
 
   fun uploadToS3(name: String, file: File) =
