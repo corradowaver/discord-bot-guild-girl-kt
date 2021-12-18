@@ -19,14 +19,16 @@ class MemberJoinedGuildListener(
   private val tempDirPath = createTempDirectory("guild-girl-greetings")
 
   override fun onGuildVoiceJoin(event: GuildVoiceJoinEvent) {
-    val randomS3Greeting = s3Manager.getRandomGreeting()
-    val file = saveS3ObjectToTempDir(randomS3Greeting)
-    val voiceChannel = event.member.voiceState?.channel
-    MusicHandler().loadAndPlay(
-      event.guild,
-      file.path,
-      voiceChannel
-    )
+    if (!event.member.user.isBot) {
+      val randomS3Greeting = s3Manager.getRandomGreeting()
+      val file = saveS3ObjectToTempDir(randomS3Greeting)
+      val voiceChannel = event.member.voiceState?.channel
+      MusicHandler().loadAndPlay(
+        event.guild,
+        file.path,
+        voiceChannel
+      )
+    }
   }
 
   fun saveS3ObjectToTempDir(randomS3Greeting: S3Object) =
