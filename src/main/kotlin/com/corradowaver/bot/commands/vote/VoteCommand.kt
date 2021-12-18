@@ -17,7 +17,8 @@ class VoteCommand(val messageBuilder: VoteMessage) : Command {
   override fun invoke(args: List<String>) {
     MusicHandler().loadAndPlay(
       event.guild,
-      javaClass.classLoader.getResource("voting-sound.wav")!!.path
+      javaClass.classLoader.getResource("voting-sound.wav")!!.path,
+      event.member?.voiceState?.channel
     )
     messageBuilder.text(args.joinToString(" ")).send(event)
   }
