@@ -32,7 +32,7 @@ class TellCommand(
       val type = defineJokeType()
 
       val jokeText = receiveJoke(type)
-      voice(event.guild, ttsConvertor, jokeText)
+      voice(event.guild, ttsConvertor, jokeText, event.member?.voiceState?.channel)
 
     } else {
       messageBuilder.sendTimeHasNotCome(event)
@@ -40,7 +40,7 @@ class TellCommand(
   }
 
   private fun defineJokeType(): JokeType {
-    return CLASSIC
+    return JokeType.FOR_KURSACH
   }
 
   private fun receiveJoke(type: JokeType): String {
