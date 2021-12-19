@@ -7,6 +7,7 @@ import com.corradowaver.bot.sound.wrappers.MusicHandler
 import net.dv8tion.jda.api.entities.MessageReaction
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import org.springframework.stereotype.Component
+import java.math.RoundingMode.FLOOR
 
 @Component
 class VoteCommand(val messageBuilder: VoteMessage) : Command {
@@ -32,8 +33,8 @@ fun countResults(reactions: List<MessageReaction>): Map<Reactions, Float> =
       val total = (it[YES.value]!! + it[NO.value]!!).toFloat()
       if (total != 0F) {
         mapOf(
-          YES to it[YES.value]!! / total * 100,
-          NO to it[NO.value]!! / total * 100
+          YES to (it[YES.value]!! / total * 100).toBigDecimal().setScale(3, FLOOR).toFloat(),
+          NO to (it[NO.value]!! / total * 100).toBigDecimal().setScale(3, FLOOR).toFloat()
         )
       } else {
         mapOf(
