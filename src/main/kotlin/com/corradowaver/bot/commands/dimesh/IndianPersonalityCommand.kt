@@ -19,7 +19,7 @@ class IndianPersonalityCommand(val messageBuilder: IndianPersonalityMessageBuild
 }
 
 fun generateIndianPersonality(): IndianPersonalityDTO {
-  val responseJson = get("http://151.248.123.70:8081/india/random").jsonObject
+  val responseJson = get("http://185.46.8.32:8081/india/random").jsonObject
   return IndianPersonalityDTO(
     responseJson["indianName"].toString(),
     responseJson["indianSurname"].toString(),

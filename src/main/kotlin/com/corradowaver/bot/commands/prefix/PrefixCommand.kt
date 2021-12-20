@@ -11,7 +11,7 @@ class PrefixCommand(
   val appProperties: AppProperties
 ) : Command {
   override val caller: String = "prefix"
-  override val description = "Changes prefix - [prefix]prefix <new_prefix>"
+  override val description = "Changes prefix - [prefix]prefix <new-prefix>"
   override lateinit var event: GuildMessageReceivedEvent
 
   companion object {
