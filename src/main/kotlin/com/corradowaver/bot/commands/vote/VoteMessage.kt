@@ -3,7 +3,7 @@ package com.corradowaver.bot.commands.vote
 import com.corradowaver.bot.commands.MessageBuilder
 import com.corradowaver.bot.commands.vote.Reactions.NO
 import com.corradowaver.bot.commands.vote.Reactions.YES
-import com.corradowaver.bot.sound.wrappers.MusicHandler
+import com.corradowaver.bot.commands.vote.Reactions.IDK
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -25,6 +25,7 @@ final object VoteMessage : MessageBuilder() {
         launch {
           it.addReaction(YES.value).queue()
           it.addReaction(NO.value).queue()
+          it.addReaction(IDK.value).queue()
           delay(15_000L)
           event.channel.retrieveMessageById(it.id).queue { message ->
             message.editMessage(createVoteResultsMessage(countResults(message.reactions))).queue()
@@ -44,9 +45,16 @@ final object VoteMessage : MessageBuilder() {
   }
 
   private fun createVoteResultsMessage(resultsMap: Map<Reactions, Float>): MessageEmbed {
+    val winner = resultsMap.values.sorted().takeLast(2).let { twoEntries ->
+      if (twoEntries[0] == twoEntries[1]) {
+        IDK.value
+      } else {
+        twoEntries[1]
+      }
+    }
     return super
-      .setTitle("$text | **${resultsMap.maxByOrNull { it.value }?.key?.value ?: "???"}**")
-      .setDescription("${YES.value}: ${resultsMap[YES]}%\n${NO.value}: ${resultsMap[NO]}%")
+      .setTitle("$text | $winner")
+      .setDescription("${YES.value}: ${resultsMap[YES]}%\n${NO.value}: ${resultsMap[NO]}%\n${IDK.value}: ${resultsMap[IDK]}%")
       .setColor(GREEN)
       .build()
   }
