@@ -1,9 +1,9 @@
 package com.corradowaver.bot.commands.vote
 
 import com.corradowaver.bot.commands.MessageBuilder
+import com.corradowaver.bot.commands.vote.Reactions.IDK
 import com.corradowaver.bot.commands.vote.Reactions.NO
 import com.corradowaver.bot.commands.vote.Reactions.YES
-import com.corradowaver.bot.commands.vote.Reactions.IDK
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -49,7 +49,9 @@ final object VoteMessage : MessageBuilder() {
       if (twoEntries[0] == twoEntries[1]) {
         IDK.value
       } else {
-        twoEntries[1]
+        resultsMap.entries.find {
+          it.value == twoEntries[1]
+        }?.key?.value
       }
     }
     return super
